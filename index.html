@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surte y Brilla - Catálogo Mayorista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Fijo -->
+  <header class="header">
+    <h1>SURTE Y BRILLA</h1>
+    <p>Accesorios al Por Mayor para tu Negocio</p>
+  </header>
+
+  <!-- Categorías (Filtros Simples) -->
+  <nav class="categories">
+    <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
+    <button class="cat-btn" onclick="filterCategory('mujer')">Mujer</button>
+    <button class="cat-btn" onclick="filterCategory('hombre')">Hombre</button>
+    <button class="cat-btn" onclick="filterCategory('cabello')">Cabello</button>
+  </nav>
+
+  <!-- Grid de Productos -->
+  <main class="catalog" id="catalog-container">
+    <!-- Se renderiza dinámicamente con JS -->
+  </main>
+
+  <!-- Barra Flotante de Carrito / WhatsApp -->
+  <div class="cart-bar" id="cart-bar">
+    <div class="cart-info">
+      <span>Total Productos: <b id="cart-count">0</b></span>
+      <span class="total-price" id="cart-total">$0</span>
+    </div>
+    <button class="btn-whatsapp" onclick="sendOrderWhatsApp()">
+      🟢 ENVIAR PEDIDO POR WHATSAPP
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+  <!-- Modal / Vista Ampliada con Fondo Oscuro -->
+  <div class="product-modal-overlay" id="product-modal" onclick="if(event.target === this) closeProductModal();">
+    <div class="modal-card" id="modal-product-content">
+      <!-- Se llena dinámicamente con JavaScript -->
+    </div>
+  </div>
+</body>
+</html>

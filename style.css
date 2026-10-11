@@ -1,0 +1,363 @@
+:root {
+  --primary-color: #059669;
+  --bg-color: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-dark: #1f2937;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  padding-bottom: 100px;
+}
+
+.header {
+  background-color: #111827;
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+.header p {
+  font-size: 0.95rem;
+  color: #d1d5db;
+  margin-top: 6px;
+}
+
+/* Categorías */
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 14px;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cat-btn {
+  background: #e5e7eb;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.cat-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Catálogo Grid */
+.catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.product-card.out-of-stock {
+  opacity: 0.65;
+}
+
+.badge-agotado {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ef4444;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.product-img-wrapper {
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9fafb;
+  position: relative;
+  cursor: pointer;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.product-img-wrapper:hover img {
+  transform: scale(1.03);
+}
+
+.zoom-hint {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.product-info {
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.product-title {
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* Bolitas de Colores */
+.color-dots-container {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #d1d5db;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.product-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.price-unidad {
+  color: #047857;
+}
+
+.price-docena {
+  color: #2563eb;
+}
+
+/* Opciones de compra (Unidad / Docena) */
+.purchase-options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 8px;
+  margin-top: 6px;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9fafb;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+.option-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.qty-btn {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:active {
+  background: #e5e7eb;
+}
+
+.qty-display {
+  font-weight: bold;
+  font-size: 0.85rem;
+  min-width: 14px;
+  text-align: center;
+}
+
+.qty-btn-disabled {
+  width: 100%;
+  background: #d1d5db;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+/* Estilos de la Ventana Modal con Fondo Oscuro */
+.product-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75); /* Fondo obscuro translúcido */
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: scaleUp 0.2s ease;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #e5e7eb;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.modal-img-container {
+  width: 100%;
+  height: 280px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9fafb;
+  margin-bottom: 12px;
+}
+
+.modal-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-title {
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.modal-prices {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #047857;
+  margin: 8px 0;
+}
+
+/* Barra de Carrito Flotante */
+.cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 2px solid #e5e7eb;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.08);
+  z-index: 100;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cart-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+}
+
+.total-price {
+  font-weight: bold;
+  color: #047857;
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
